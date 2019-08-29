@@ -1,0 +1,315 @@
+" No Compatibility. That just sucks
+" especially annoying on redhat/windows/osx
+set nocompatible
+set backspace=indent,eol,start
+
+" Better modes.  Remeber where we are
+set viminfo=!,'100,\"100,:20,<50,s10,h,n~/.viminfo
+
+" Pathogen
+call pathogen#infect()
+
+syntax on
+
+" The PC is fast enough, do syntax highlight syncing from start
+autocmd BufEnter * :syntax sync fromstart
+
+" Move Backup Files to ~/.vim/sessions
+set backupdir=~/.vim/sessions
+set dir=~/.vim/sessions
+
+" Remember cursor position
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+" Toggle cursor
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" Enable hidden buffers
+set hidden
+
+" enable automatic title setting for terminals
+set title
+set titleold="Terminal"
+set titlestring=%F
+
+" Enable filetype plugins and indention
+filetype plugin indent on
+
+" sets leader to ',' and localleader to "\"
+let mapleader=","
+let maplocalleader="\\"
+
+" activate a permanent ruler and disable Toolbar, and add line
+" highlightng as well as numbers.
+" And disable the sucking pydoc preview window for the omni completion
+" also highlight current line and disable the blinking cursor.
+set ruler
+set guioptions-=T
+set completeopt-=preview
+set gcr=a:blinkon0
+if has("gui_running")
+  set cursorline
+endif
+
+set ttyfast
+
+" customize the wildmenu
+set wildmenu
+set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,*.class,*/*.dSYM/*,*.dylib
+set wildmode=list:full
+
+
+" change working directory automatically
+" disabled for mapleader that makes this explicit
+" set autochdir
+
+" go with smartindent if there is no plugin indent file.
+" but don't outdent hashes
+set smartindent
+inoremap # X#
+
+" quicker window switching
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+" map to arrows
+nnoremap <C-Right> <C-w>l
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Down> <C-w>j
+
+" Use system keyboard
+set clipboard=unnamed
+
+set mouse=a
+
+set nobackup
+set nowritebackup
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+
+set ruler         " show the cursor position all the time
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+"Toggle relative numbering, and set to absolute on loss of focus or insert mode
+set rnu
+function! ToggleNumbersOn()
+    set nu!
+    set rnu
+endfunction
+function! ToggleRelativeOn()
+    set rnu!
+    set nu
+endfunction
+autocmd FocusLost * call ToggleRelativeOn()
+autocmd FocusGained * call ToggleRelativeOn()
+autocmd InsertEnter * call ToggleRelativeOn()
+autocmd InsertLeave * call ToggleRelativeOn()
+
+"Use enter to create new lines w/o entering insert mode
+nnoremap <CR> o<Esc>
+
+"Below is to fix issues with the ABOVE mappings in quickfix window
+autocmd CmdwinEnter * nnoremap <CR> <CR>
+autocmd BufReadPost quickfix nnoremap <CR> <CR>
+
+" sudo write this
+cmap W! w !sudo tee % >/dev/null
+
+" Better Search
+set hlsearch
+set incsearch
+
+" Make syntastic auto update the location list and make it also check
+" when the file opens
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_check_on_open=1
+
+" NERDTree
+nnoremap <leader>t :NERDTree<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$', '\.dSYM$']
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * call NERDTreeAddKeyMap({ 'key': '<2-LeftMouse>', 'scope': "FileNode", 'callback': "OpenInTab", 'override':1 })
+function! OpenInTab(node)
+	call a:node.activate({'reuse': 'all', 'where': 't'})
+endfunction
+
+" Alt-number to switch between tabs
+if has('gui_running')
+    " the following two lines do not work in vim, but work in Gvim
+    nnoremap <silent><A-1> 1gt
+    nnoremap <silent><A-2> 2gt
+    nnoremap <silent><A-3> 3gt
+    nnoremap <silent><A-4> 4gt
+    nnoremap <silent><A-5> 5gt
+    nnoremap <silent><A-6> 6gt
+    nnoremap <silent><A-7> 7gt
+    nnoremap <silent><A-8> 8gt
+    nnoremap <silent><A-9> :tablast<CR>
+else
+    " These two work in vim and it maps Alt key in gnome terminal.
+    " ATTENTION: the following two lines should not be
+    " edited under other editors like gedit. Do not write or copy paste ^[1
+    " instead use Ctrl-v  Alt+1 otherwise it will be broken!
+    nnoremap 1 1gt
+    nnoremap 2 2gt
+    nnoremap 3 3gt
+    nnoremap 4 4gt
+    nnoremap 5 5gt
+    nnoremap 6 6gt
+    nnoremap 7 7gt
+    nnoremap 8 8gt
+    nnoremap 9 :tablast<CR>
+endif
+
+" Quit window on <leader>q
+nnoremap <leader>q :q<CR>
+
+" Save on <leader>s
+map <leader>s :w<CR>
+
+" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
+" Easy switching
+nnoremap <leader>Th :set ft=htmljinja<CR>
+nnoremap <leader>Tp :set ft=python<CR>
+nnoremap <leader>Tj :set ft=javascript<CR>
+nnoremap <leader>Tr :set ft=rst<CR>
+
+" Make the command line two lines high and change the statusline display to
+" something that looks useful.
+set cmdheight=2
+set laststatus=2
+set statusline=[%l,%v\ %P%M]\ %f\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}
+set showcmd
+set number
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+" Tab Settings
+set smarttab
+set tabstop=8
+
+" utf-8 default encoding
+set enc=utf-8
+
+" prefer unix over windows over os9 formats
+set fileformats=unix,dos,mac
+
+
+" Split management
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>W <C-w>s
+nnoremap <leader>n :new<CR>
+
+
+" Make the command line two lines high and change the statusline display to
+" something that looks useful.
+set cmdheight=2
+set laststatus=2
+set statusline=[%l,%v\ %P%M]\ %f\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}
+set showcmd
+set number
+
+" Tab Settings
+set smarttab
+set tabstop=8
+
+" Thank you vi
+nnoremap Y y$
+
+" Colorcolumns
+if version >= 703
+  autocmd FileType * setlocal colorcolumn=0
+  " autocmd FileType ruby,python,javascript,c,cpp,objc,rst
+  "  \ let &colorcolumn="80,".join(range(84,300),",")
+  autocmd FileType ruby,python,javascript,c,cpp,objc,rst let &colorcolumn="80"
+endif
+
+
+" CSS
+" ---
+autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType css setlocal commentstring=/*\ %s\ */
+autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
+
+" Less
+" ----
+autocmd FileType less setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+
+" Sass
+" ----
+autocmd FileType scss setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+
+" Java
+" ----
+autocmd FileType java setlocal shiftwidth=2 tabstop=8 softtabstop=2 expandtab
+autocmd FileType java setlocal commentstring=//\ %s
+
+" C/Obj-C/C++
+autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType c setlocal commentstring=/*\ %s\ */
+autocmd FileType cpp,objc setlocal commentstring=//\ %s
+let c_no_curly_error=1
+let g:syntastic_cpp_include_dirs = ['include', '../include']
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_c_include_dirs = ['include', '../include']
+let g:syntastic_c_compiler = 'clang'
+
+" vim
+" ---
+autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+
+" Javascript
+" ----------
+autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal commentstring=//\ %s
+autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
+autocmd FileType javascript let b:javascript_fold = 0
+let javascript_enable_domhtmlcss=1
+let g:syntastic_javascript_checkers = ['jshint'] 
+let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
+
+" JSON
+" ----
+autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+" Typescript
+" ----------
+let g:syntastic_typescript_checkers = []
+
+" cmake support
+" -------------
+autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake
+
+" Erlang support
+" --------------
+autocmd FileType erlang setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+autocmd BufNewFile,BufRead rebar.config setlocal ft=erlang
+
+" YAML support
+" ------------
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
+
+" fzf
+set rtp+=/home/nyxgear/.fzf
+noremap <leader>p :FZF<CR>
+noremap  :FZF<CR>
