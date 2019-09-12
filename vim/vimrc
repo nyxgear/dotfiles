@@ -36,6 +36,13 @@ set titlestring=%F
 " Enable filetype plugins and indention
 filetype plugin indent on
 
+" Remove trailing spaces on save
+autocmd BufWritePre * %s/\s\+$//e
+
+" Show spaces and tabs
+set list
+set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
+
 " sets leader to ',' and localleader to "\"
 let mapleader=","
 let maplocalleader="\\"
@@ -284,7 +291,7 @@ autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
 autocmd FileType javascript let b:javascript_fold = 0
 let javascript_enable_domhtmlcss=1
-let g:syntastic_javascript_checkers = ['jshint'] 
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
 
 " JSON
