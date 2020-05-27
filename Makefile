@@ -1,4 +1,7 @@
-setup: setup-vim setup-zsh setup-terminal setup-git 
+setup: install-vim-plugins setup-vim setup-zsh setup-terminal setup-git
+
+install-vim-plugins:
+	git submodule update --init --recursive
 
 setup-vim:
 	rm -rf ~/.vim ~/.vimrc
