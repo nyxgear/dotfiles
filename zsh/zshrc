@@ -55,7 +55,7 @@ plugins=(git-prompt fzf)
 
 source $ZSH/oh-my-zsh.sh
 
-alias weather='curl v2.wttr.in'
+alias weather='f(){ curl v2.wttr.in"$@";  unset -f f; }; f'
 
-# fzf installation folder. 
+# fzf installation folder.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
