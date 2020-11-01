@@ -36,13 +36,15 @@ install-vim-plugins:
 	git submodule update --init --recursive
 
 install-albert:
-	# https://software.opensuse.org/download.html?project=home:manuelschneid3r&package=albert
-	sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_18.04/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list" && \
-	curl https://build.opensuse.org/projects/home:manuelschneid3r/public_key | sudo apt-key add - && \
-	sudo apt-get update && \
-	sudo apt-get install -y albert
+	sudo rm -f /etc/apt/trusted.gpg.d/home:manuelschneid3r.asc
+	curl https://build.opensuse.org/projects/home:manuelschneid3r/public_key | sudo apt-key add -
+	echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_$(shell lsb_release -rs)/ /' | sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
+	sudo wget -nv https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_$(shell lsb_release -rs)/Release.key -O "/etc/apt/trusted.gpg.d/home:manuelschneid3r.asc"
+	sudo apt update
+	sudo apt install -y albert
 
 install-insync:
+	sudo rm -f /etc/apt/trusted.gpg.d/home:manuelschneid3r.asc
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ACCAF35C
 	sudo sh -c 'echo "deb http://apt.insync.io/ubuntu $(shell lsb_release -cs) non-free contrib" > /etc/apt/sources.list.d/insync.list'
 	sudo apt-get update
