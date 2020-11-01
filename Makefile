@@ -1,4 +1,5 @@
 install: install-packages \
+	install-flatpak-apps \
 	install-ohmyzsh \
 	install-vim-plugins \
 	install-albert \
@@ -23,7 +24,11 @@ install-packages:
 	sudo apt install zsh meld python3-venv
 	sudo apt install unrar vlc variety gnome-tweaks
 	sudo apt install build-essential cmake python3-dev    # YouCompleteMe dependencies
-	sudo apt install openjdk-8-jdk
+	sudo apt install flatpak
+
+install-flatpak-apps: setup-flatpak
+	flatpak install flathub -y org.telegram.desktop
+	flatpak install flathub -y com.visualstudio.code
 
 install-ohmyzsh:
 	rm -rf ~/.oh-my-zsh
@@ -82,6 +87,9 @@ setup-git:
 	rm -f ~/.gitconfig
 	ln -s `pwd`/git/gitconfig ~/.gitconfig
 
+setup-flatpak:
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	@echo "Reboot the system to complete setup."
 
 setup-gnome-keybindings:
 	gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot '<Primary><Shift><Alt>dollar'
