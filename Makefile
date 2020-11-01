@@ -27,8 +27,9 @@ install-packages:
 	sudo apt install flatpak
 
 install-flatpak-apps: setup-flatpak
-	flatpak install flathub -y org.telegram.desktop
-	flatpak install flathub -y com.visualstudio.code
+	flatpak install -y flathub org.telegram.desktop
+	flatpak install -y flathub com.visualstudio.code
+	flatpak install -y flathub com.bitwarden
 
 install-ohmyzsh:
 	rm -rf ~/.oh-my-zsh
@@ -77,7 +78,6 @@ setup-zsh:
 		echo '\n[ -n "$$GNOME_TERMINAL_SCREEN" ] && [ -x "$$(command -v zsh)" ] && exec zsh "$$@"' >> ~/.bashrc; \
 	fi;
 
-
 setup-vim:
 	rm -rf ~/.vim ~/.vimrc
 	ln -s `pwd`/vim ~/.vim
@@ -92,16 +92,22 @@ setup-flatpak:
 	@echo "Reboot the system to complete setup."
 
 setup-gnome-keybindings:
-	gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot '<Primary><Shift><Alt>dollar'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot-clip '<Shift><Alt>dollar'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot '<Primary><Shift><Alt>percent'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot-clip '<Shift><Alt>percent'
+	gsettings set org.gnome.shell favorite-apps ['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'chromium_chromium.desktop', 'gnome-system-monitor.desktop']"
+	gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot ["'<Primary><Shift><Alt>dollar'"]
+	gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot-clip ["'<Shift><Alt>dollar'"]
+	gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot ["'<Primary><Shift><Alt>percent'"]
+	gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot-clip ["'<Shift><Alt>percent'"]
 	# custom key binding
 	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \[\'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/\'\]
 	# toggle Albert key binding
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Albert toggle"
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "albert toggle"
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Super>space"
+	
+
+setup-swap-alt-win:
+	rm -f ~/.config/autostart/swap_alt_win.desktop
+	ln -s `pwd`/autostart ~/.config/autostart/swap_alt_win.desktop
 
 reminder-for-optionals:
 	@echo "========= Optionals not run ==========="
