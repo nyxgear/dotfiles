@@ -1,12 +1,11 @@
 install: install-packages \
 	install-ohmyzsh \
 	install-vim-plugins \
-	install-fzf \
 	install-albert \
 	install-insync \
 	setup
-	
-setup: 
+
+setup:
 	setup-terminal \
 	setup-zsh-as-default-sh \
 	setup-zsh \
@@ -19,7 +18,7 @@ setup:
 
 install-packages:
 	sudo apt install curl wget
-	sudo apt install vim git
+	sudo apt install vim git fzf
 	sudo apt install tree htop ppa-purge
 	sudo apt install zsh meld python3-venv
 	sudo apt install unrar vlc variety gnome-tweaks
@@ -35,11 +34,6 @@ install-ohmyzsh:
 
 install-vim-plugins:
 	git submodule update --init --recursive
-
-install-fzf:
-	# reminder for the future: Debian 9+/Ubuntu 19.10+ --> sudo apt-get install fzf
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install
 
 install-albert:
 	# https://software.opensuse.org/download.html?project=home:manuelschneid3r&package=albert
@@ -71,6 +65,11 @@ setup-zsh:
 	rm -f ~/.zshrc ~/.zsh-custom
 	ln -s `pwd`/zsh/zshrc ~/.zshrc
 	ln -s `pwd`/zsh/custom ~/.zsh-custom
+	@ # Make zsh the default shell in Gnome
+	if ! grep -q 'command -v zsh' ~/.bashrc; then \
+		echo '\n[ -n "$$GNOME_TERMINAL_SCREEN" ] && [ -x "$$(command -v zsh)" ] && exec zsh "$$@"' >> ~/.bashrc; \
+	fi;
+
 
 setup-vim:
 	rm -rf ~/.vim ~/.vimrc
