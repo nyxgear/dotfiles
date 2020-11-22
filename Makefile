@@ -20,7 +20,7 @@ setup:
 install-packages:
 	sudo apt install curl wget
 	sudo apt install vim git fzf
-	sudo apt install tree htop ppa-purge
+	sudo apt install tree htop gparted ppa-purge
 	sudo apt install zsh meld python3-venv
 	sudo apt install unrar vlc variety gnome-tweaks
 	sudo apt install build-essential cmake python3-dev    # YouCompleteMe dependencies
@@ -40,6 +40,7 @@ install-ohmyzsh:
 
 install-vim-plugins:
 	git submodule update --init --recursive
+	cd vim/bundle/youcompleteme && python3 install.py
 
 install-albert:
 	sudo rm -f /etc/apt/trusted.gpg.d/home:manuelschneid3r.asc
