@@ -108,7 +108,8 @@ setup-gnome-keybindings:
 
 setup-swap-alt-win:
 	rm -f ~/.config/autostart/swap_alt_win.desktop
-	ln -s `pwd`/autostart ~/.config/autostart/swap_alt_win.desktop
+	ln -s `pwd`/.config/autostart/swap_alt_win.desktop ~/.config/autostart/swap_alt_win.desktop
+	@echo "Done. Reboot required."
 
 reminder-for-optionals:
 	@echo "========= Optionals not run ==========="

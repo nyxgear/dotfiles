@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Swap Alt Win Keys
+GenericName=Swap Keys
+Comment=Swap keys functioning
+Categories=Network;
+Exec=gnome-terminal --command 'setxkbmap -option altwin:swap_lalt_lwin'
+Terminal=false
