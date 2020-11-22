@@ -57,6 +57,13 @@ install-insync:
 	sudo apt-get update
 	sudo apt-get install insync
 
+install-docker:
+	sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(shell lsb_release -cs) stable"
+	sudo apt-get update
+	sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
+
 #--------------------------------------------------
 
 setup-terminal:
@@ -110,6 +117,13 @@ setup-swap-alt-win:
 	rm -f ~/.config/autostart/swap_alt_win.desktop
 	ln -s `pwd`/.config/autostart/swap_alt_win.desktop ~/.config/autostart/swap_alt_win.desktop
 	@echo "Done. Reboot required."
+
+setup-albert:
+	rm -f ~/.config/albert/albert.conf
+	ln -s `pwd`/.config/albert/albert.conf ~/.config/albert/albert.conf
+	rm -f ~/.config/autostart/albert.desktop
+	ln -s /usr/share/applications/albert.desktop ~/.config/autostart/albert.desktop
+
 
 reminder-for-optionals:
 	@echo "========= Optionals not run ==========="
