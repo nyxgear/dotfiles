@@ -1,5 +1,5 @@
 install: install-packages \
-	install-flatpak-apps \
+	install-vscode \
 	install-ohmyzsh \
 	install-vim-plugins \
 	install-albert \
@@ -18,19 +18,24 @@ setup:
 #--------------------------------------------------
 
 install-packages:
-	sudo apt install curl wget
+	sudo apt install apt-transport-https curl wget
 	sudo apt install vim git fzf
 	sudo apt install tree htop gparted ppa-purge
 	sudo apt install zsh meld python3-venv
 	sudo apt install unrar vlc variety gnome-tweaks
 	sudo apt install build-essential cmake python3-dev    # YouCompleteMe dependencies
-	sudo apt install flatpak
+	sudo apt install telegram-desktop
 
-install-flatpak-apps: setup-flatpak
-	flatpak install -y flathub org.telegram.desktop
-	flatpak install -y flathub com.visualstudio.code
-	flatpak install -y flathub com.bitwarden
+install-vscode:
+	wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/packages.microsoft.gpg add -
+	sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+	sudo apt update && sudo apt install -y code
 
+install-bitwarden:
+	cd /tmp && \
+	wget -O bitwarden.deb https://vault.bitwarden.com/download/\?app\=desktop\&platform\=linux\&variant\=deb && \
+	sudo apt install ./bitwarden.deb 
+	
 install-ohmyzsh:
 	rm -rf ~/.oh-my-zsh
 	cd /tmp && \
@@ -54,15 +59,15 @@ install-insync:
 	sudo rm -f /etc/apt/trusted.gpg.d/home:manuelschneid3r.asc
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ACCAF35C
 	sudo sh -c 'echo "deb http://apt.insync.io/ubuntu $(shell lsb_release -cs) non-free contrib" > /etc/apt/sources.list.d/insync.list'
-	sudo apt-get update
-	sudo apt-get install insync
+	sudo apt update
+	sudo apt install -y insync
 
 install-docker:
-	sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+	sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(shell lsb_release -cs) stable"
-	sudo apt-get update
-	sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
+	sudo apt update
+	sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose
 
 #--------------------------------------------------
 

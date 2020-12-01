@@ -53,6 +53,8 @@ ZSH_CUSTOM=/home/nyxgear/.zsh-custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git-prompt fzf)
 
+# git-prompt no output? Is python package in zsh path?
+
 source $ZSH/oh-my-zsh.sh
 
 alias weather='f(){ curl v2.wttr.in"$@";  unset -f f; }; f'
