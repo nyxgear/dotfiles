@@ -25,6 +25,8 @@ install-packages:
 	sudo apt install unrar vlc variety gnome-tweaks
 	sudo apt install build-essential cmake python3-dev    # YouCompleteMe dependencies
 	sudo apt install telegram-desktop
+	sudo apt install ttf-mscorefonts-installer
+	sudo fc-cache
 
 install-vscode:
 	wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/packages.microsoft.gpg add -
@@ -34,8 +36,8 @@ install-vscode:
 install-bitwarden:
 	cd /tmp && \
 	wget -O bitwarden.deb https://vault.bitwarden.com/download/\?app\=desktop\&platform\=linux\&variant\=deb && \
-	sudo apt install ./bitwarden.deb 
-	
+	sudo apt install ./bitwarden.deb
+
 install-ohmyzsh:
 	rm -rf ~/.oh-my-zsh
 	cd /tmp && \
@@ -116,7 +118,7 @@ setup-gnome-keybindings:
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Albert toggle"
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "albert toggle"
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Super>space"
-	
+
 
 setup-swap-alt-win:
 	rm -f ~/.config/autostart/swap_alt_win.desktop
