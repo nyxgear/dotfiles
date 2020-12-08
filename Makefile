@@ -121,8 +121,14 @@ setup-gnome-keybindings:
 
 
 setup-swap-alt-win:
+	# Setup startup command
 	rm -f ~/.config/autostart/swap_alt_win.desktop
 	ln -s `pwd`/.config/autostart/swap_alt_win.desktop ~/.config/autostart/swap_alt_win.desktop
+	# Setup udev rule to set lalt lwin swap options on new devices plugged in
+	sudo rm -f /etc/udev/rules.d/99-setxkbmap_swalp_lalt_lwin.rules
+	sudo ln -s `pwd`/etc/udev/rules.d/99-setxkbmap_swalp_lalt_lwin.rules /etc/udev/rules.d/99-setxkbmap_swalp_lalt_lwin.rules
+	sudo chown root:root /etc/udev/rules.d/99-setxkbmap_swalp_lalt_lwin.rules
+	sudo chmod 644 /etc/udev/rules.d/99-setxkbmap_swalp_lalt_lwin.rules
 	@echo "Done. Reboot required."
 
 setup-albert:
