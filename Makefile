@@ -102,10 +102,6 @@ setup-git:
 	rm -f ~/.gitconfig
 	ln -s `pwd`/git/gitconfig ~/.gitconfig
 
-setup-flatpak:
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	@echo "Reboot the system to complete setup."
-
 setup-gnome-keybindings:
 	gsettings set org.gnome.shell favorite-apps ['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'chromium_chromium.desktop', 'gnome-system-monitor.desktop']"
 	gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot ["'<Primary><Shift><Alt>dollar'"]
