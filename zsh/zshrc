@@ -58,3 +58,8 @@ plugins=(git-prompt fzf)
 source $ZSH/oh-my-zsh.sh
 
 alias weather='f(){ curl v2.wttr.in"$@";  unset -f f; }; f'
+
+# k8s autocomplete
+source <(kubectl completion zsh)
+alias k=kubectl
+complete -F __start_kubectl k

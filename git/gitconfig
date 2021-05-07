@@ -28,7 +28,7 @@
 [alias]
 	st = status -sb
 	ci = commit
-	ck = checkout
+	co = checkout
 	br = branch
 	cp = cherry-pick
 	branches = branch -avv
