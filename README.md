@@ -9,13 +9,6 @@ A collection of dotfiles and scripts.
 - [k9s](https://k9scli.io/) - A terminal based UI to interact with your Kubernetes clusters.
 - [tmux](https://github.com/tmux/tmux/wiki)
 
-## Tools to look into
-
-This is a whishlist of tools I want to look into.
-
-- [kubectx](https://github.com/ahmetb/kubectx)
-- [kubeswitch](https://github.com/danielfoehrKn/kubeswitch)
-- [tmuxinator](https://github.com/tmuxinator/tmuxinator)
 
 # Useful other utilities
 
@@ -26,3 +19,14 @@ This is a whishlist of tools I want to look into.
 
 - https://github.com/mitsuhiko/dotfiles
 - https://github.com/EoinFarrell/dotfiles
+
+---
+
+# To look into
+
+This is a list of tools and utilities I want to look into but haven't yet.
+
+- [kubectx](https://github.com/ahmetb/kubectx)
+- [kubeswitch](https://github.com/danielfoehrKn/kubeswitch)
+- [tmuxinator](https://github.com/tmuxinator/tmuxinator)
+- [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
