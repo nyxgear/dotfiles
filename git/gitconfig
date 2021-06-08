@@ -46,10 +46,14 @@
     prompt = false
 
 [difftool "meld"]
-    cmd = meld "$LOCAL" "$REMOTE"
+	cmd = meld \"$LOCAL\" \"$REMOTE\"
 
 [push]
 	default = current
 
 [merge]
 	tool = meld
+[mergetool "meld"]
+	cmd = meld --auto-merge \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\" --label=Local --label=Base --label=Remote --diff \"$BASE\" \"$LOCAL\" --diff \"$BASE\" \"$REMOTE\"
+[mergetool]
+	prompt = false
