@@ -320,3 +320,8 @@ autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
 set rtp+=/home/nyxgear/.fzf
 noremap <leader>p :FZF<CR>
 noremap  :FZF<CR>
+
+set tabstop=2
+set expandtab
+set shiftwidth=2
+

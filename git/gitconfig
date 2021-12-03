@@ -32,12 +32,16 @@
 	br = branch
 	cp = cherry-pick
 	branches = branch -avv
-	wtf = log --graph --pretty=format:"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%an%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n" --stat
+	wtf = log --graph --all --pretty=format:\"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%an%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n\" --stat
 	lg = log --graph --all --stat
-	unci = reset HEAD^
+	unci = uncommit
 	uncommit = reset HEAD^
 	ls = ls-files
 	ps = push
+	ll = lol
+	lol = log --all --graph --decorate --pretty=oneline --abbrev-commit
+	loll = log --all --graph --decorate --pretty=oneline --abbrev-commit --stat
+  diffci = "!git diff $1^ $1^2"
 
 [diff]
     tool = meld
@@ -57,3 +61,5 @@
 	cmd = meld --auto-merge \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\" --label=Local --label=Base --label=Remote --diff \"$BASE\" \"$LOCAL\" --diff \"$BASE\" \"$REMOTE\"
 [mergetool]
 	prompt = false
+[help]
+	autocorrect = 30

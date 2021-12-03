@@ -63,3 +63,10 @@ alias weather='f(){ curl v2.wttr.in"$@";  unset -f f; }; f'
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
+
+alias d='docker'
+
+alias sphinx-box='docker run --rm -it -e USER_ID="${UID}" -v ${PWD}:/project -p 8000:8000 registry.gitlab.com/aria-arianet/tool/sphinx-box'
+
+# Adding a even shorter alias "sb"
+alias sb='sphinx-box'
