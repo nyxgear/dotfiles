@@ -2,28 +2,32 @@
 
 set -x
 
-kill -9 $(ps aux | grep "server 8080" | head -1 | awk '{print $2}')
-kubectl -n argocd port-forward svc/argocd-server 8080:443 &> /tmp/argoserver.log &
-pid=$!
+function get_port_forward_pid() {
+    ps aux | grep "port-forward -n argocd svc/argocd-server" | grep --invert-match "grep" | awk '{print $2}'
+}
 
-while [[ $(cat /tmp/argoserver.log | wc -l) -eq 0 ]]; do
-    echo wait...
-    sleep 3
-done
+function reestablish_port_forward() {
+    kill -9 $(get_port_forward_pid)
+    kubectl -n argocd port-forward svc/argocd-server 8080:443 &> /tmp/argoserver.log &
+
+    while [[ $(cat /tmp/argoserver.log | wc -l) -eq 0 ]]; do
+        echo waiting kubectl to establish port-forward...
+        sleep 1
+    done
+    echo "=== Port-forward established. ==="
+}
+
+reestablish_port_forward
 
 while true; do
-    sleep 3
-    curl --max-time 15 -s http://localhost:8080/ &>/dev/null
+    curl --max-time 5 -s -k http://localhost:8080/ &>/dev/null
     if [[ $? -ne 0 ]]; then
-        cat /tmp/argoserver.log
-        kill -9 $(ps aux | grep "server 8080" | head -1 | awk '{print $2}')
+        echo "ArgoCD server is not responding. Tail of the log:"
+        tail -n 10 /tmp/argoserver.log
 
-        rm -f /tmp/argoserver.log
-        kubectl -n argocd port-forward svc/argocd-server 8080:443 &> /tmp/argoserver.log &
-
-        while [[ $(cat /tmp/argoserver.log | wc -l) -eq 0 ]]; do
-            echo wait...
-            sleep 3
-        done
+        echo "Reestablishing port-forward..."
+        > /tmp/argoserver.log
+        reestablish_port_forward
     fi
+    sleep 3
 done
