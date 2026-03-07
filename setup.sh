@@ -51,7 +51,7 @@ PWD=$(git rev-parse --show-toplevel)
     set -x
 	rm -rf ~/.vim ~/.vimrc
     ln -s "${PWD}/vim" ~/.vim
-    ln -s ~/.vim/.vimrc ~/.vimrc
+    ln -s "${PWD}/vim/vimrc" ~/.vimrc
     set +x
 }
 
