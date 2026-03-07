@@ -20,6 +20,11 @@ A collection of dotfiles and scripts.
 - https://github.com/mitsuhiko/dotfiles
 - https://github.com/EoinFarrell/dotfiles
 
+## Code-presenting tools
+
+- https://carbon.now.sh/
+- https://ray.so/
+
 ---
 
 # To look into
