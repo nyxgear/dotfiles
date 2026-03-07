@@ -2,9 +2,30 @@
 
 PWD=$(git rev-parse --show-toplevel)
 
-# the number is a dependency order
 
-01_setup_git() {
+01_setup_zsh(){
+    set -x
+	rm -rf ~/.zshrc ~/.zsh-custom
+	ln -s ${PWD}/zsh/zshrc ~/.zshrc
+    # ln -s ${PWD}/zsh/custom ~/.zsh-custom
+    # rm ~/.zshrc
+# ln -s ~/Code/personal/dotfiles/zsh/zshrc ~/.zshrc
+# ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/custom.zsh ~/.oh-my-zsh/custom/custom.zsh
+# ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/powerlevel10k.zsh ~/.oh-my-zsh/custom/powerlevel10k.zsh
+    # ln -s ${PWD}/zsh/custom/themes/nyxgear.zsh-theme ~/.oh-my-zsh/custom/themes/nyxgear.zsh-theme
+    # ln -s ${PWD}/zsh/init.zsh ~/.oh-my-zsh/custom/init.zsh
+    # ln -s ${PWD}/zsh/init.sh ~/.oh-my-zsh/custom/init.sh
+    chsh -s $(which zsh)
+    set +x
+}
+
+# 02_install_ohmyzsh(){
+#     set -x
+#     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#     set +x
+# }
+
+03_setup_git() {
     set -x
     
     rm -f ~/.gitconfig
@@ -15,12 +36,12 @@ PWD=$(git rev-parse --show-toplevel)
     fi
 
     rm -f ~/.gitignore
-    ln -s "${PWD}/git/.gitignore" ~/.gitignore
+    ln -s "${PWD}/git/gitignore" ~/.gitignore
     
     set +x
 }
 
-01_setup_vim() {
+04_setup_vim() {
     set -x
 	rm -rf ~/.vim ~/.vimrc
     ln -s "${PWD}/vim" ~/.vim
@@ -28,26 +49,9 @@ PWD=$(git rev-parse --show-toplevel)
     set +x
 }
 
-01_setup_zsh(){
-    set -x
-	rm -f ~/.zshrc ~/.zsh-custom
-	ln -s ${PWD}/zsh/zshrc ~/.zshrc
-    # ln -s ${PWD}/zsh/custom ~/.zsh-custom
-    # rm ~/.zshrc
-# ln -s ~/Code/personal/dotfiles/zsh/zshrc ~/.zshrc
-# ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/custom.zsh ~/.oh-my-zsh/custom/custom.zsh
-# ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/powerlevel10k.zsh ~/.oh-my-zsh/custom/powerlevel10k.zsh
-    ln -s ${PWD}/zsh/custom/themes/nyxgear.zsh-theme ~/.oh-my-zsh/custom/themes/nyxgear.zsh-theme
-    ln -s ${PWD}/zsh/init.zsh ~/.oh-my-zsh/custom/init.zsh
-    # ln -s ${PWD}/zsh/init.sh ~/.oh-my-zsh/custom/init.sh
-    chsh -s /usr/local/bin/zsh
 
 
-    set +x
-}
-
-
-01_install_brew() {
+10_install_brew() {
     echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     set -x

@@ -1,0 +1,12 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+
+
+
+ZSH_THEME="agnoster" # (this is one of the fancy ones)
+
+# source the work zshrc if it exists
+if [ -f ~/.dotfiles-work/zsh/zshrc ]; then
+    source ~/.dotfiles-work/zsh/zshrc
+fi

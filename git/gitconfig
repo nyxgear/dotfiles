@@ -1,13 +1,21 @@
-[include]
-	path = .gitconfig-work
-
+[user]
+	name = Stefano Cilloni
+	email = dev@nyxgear.com
+	
 [core]
-	excludesfile = ~/.gitignore
+	excludesFile = ~/.gitignore
+	# pager = delta
 	autocrlf = input
 	editor = vim
 
-[color]
-	ui = auto
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+# [color]
+# 	ui = auto
 
 [color "branch"]
 	current = red
@@ -38,18 +46,24 @@
 	uncommit = reset HEAD^
 	ls = ls-files
 	ps = push
+	lol = log --all --graph --decorate --pretty=oneline --abbrev-commit
+	loll = log --all --graph --decorate --pretty=oneline --abbrev-commit --stat
 
-# [diff]
-#     tool = meld
+[diff]
+    tool = cursor
 
-# [difftool]
-#     prompt = false
-
-# [difftool "meld"]
-#     cmd = meld "$LOCAL" "$REMOTE"
+[difftool "cursor"]
+    cmd = cursor --wait --diff $LOCAL $REMOTE
 
 [push]
 	default = current
 
-# [merge]
-# 	tool = meld
+[merge]
+	tool = cursor
+
+[mergetool "cursor"]
+    cmd = cursor --wait --merge $REMOTE $LOCAL $BASE $MERGED
+
+# Work-only git configuration
+[include]
+	path = ~/.gitconfig-work
