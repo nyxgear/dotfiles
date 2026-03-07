@@ -1,6 +1,6 @@
 # dotfiles
 
-A collection of dotfiles and scripts.
+Collection of my dotfiles and scripts. They might not work right away for you, but feel free to get inspired!
 
 # Tools I use
 
