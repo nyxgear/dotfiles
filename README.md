@@ -2,6 +2,12 @@
 
 Collection of my dotfiles and scripts. They might not work right away for you, but feel free to get inspired!
 
+```
+git clone git@github.com:nyxgear/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./setup.sh
+```
+
 # Tools I use
 
 - [zsh](https://www.zsh.org/) - A shell designed for interactive use, although it is also a powerful scripting language.
