@@ -67,7 +67,7 @@ PWD=$(git rev-parse --show-toplevel)
 }
 
 11_reminder_brew_apps() {
-    echo "Here is a reminder of the CLI apps you can install with brew:"
+    echo "Reminder to install apps with brew:"
     echo
     echo "brew install git"
     echo "brew install vim"
@@ -90,7 +90,7 @@ PWD=$(git rev-parse --show-toplevel)
 }
 
 12_reminder_brew_gui_apps() {
-    echo "Here is a reminder of the GUI apps you can install with brew:"
+    echo "Reminder to install GUIs apps with brew:"
     echo
     echo "brew install --cask obsidian"
     echo "brew install --cask rectangle"
@@ -109,7 +109,6 @@ PWD=$(git rev-parse --show-toplevel)
 
 
 main() {
-    # list of functions
     functions=$(grep -E '^[0-9]+_(setup_|install_|reminder_).*' setup.sh | cut -d'(' -f1 | tr '()' ' ' | sort)
 
     echo "Available functions:"
