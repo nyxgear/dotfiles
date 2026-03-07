@@ -19,6 +19,7 @@ alias weather='f(){ curl v2.wttr.in"$@";  unset -f f; }; f'
 
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#enable-shell-autocompletion
 source <(kubectl completion zsh)
+complete -F __start_kubectl k
 
 # source the work zshrc-startup.zsh if it exists
 source ~/.dotfiles-work/oh-my-zsh/custom/zshrc-startup-work.zsh 2>/dev/null || true
