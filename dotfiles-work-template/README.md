@@ -4,7 +4,7 @@ This dotfiles repo complements [nyxgear/dotfiles](https://github.com/nyxgear/dot
 
 # Bootstrapping
 
-To start a new dotfiles work repo, first setup [nyxgear/dotfiles](https://github.com/nyxgear/dotfiles).
+To start a new dotfiles work repo, first setup [nyxgear/dotfiles](https://github.com/nyxgear/dotfiles), then once that is cloned:
 
 ```shell
 mkdir ~/.dotfiles-work

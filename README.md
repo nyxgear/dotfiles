@@ -16,7 +16,7 @@ cd ~/.dotfiles
 - [tmux](https://github.com/tmux/tmux/wiki)
 
 
-# Useful other utilities
+# Other useful utilities
 
 - https://quickref.me/
 - `curl cheat.sh/`
@@ -34,8 +34,6 @@ cd ~/.dotfiles
 ---
 
 # To look into
-
-This is a list of tools and utilities I want to look into but haven't yet.
 
 - [kubectx](https://github.com/ahmetb/kubectx)
 - [kubeswitch](https://github.com/danielfoehrKn/kubeswitch)

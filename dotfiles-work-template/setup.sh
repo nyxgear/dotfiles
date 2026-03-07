@@ -9,6 +9,7 @@ PWD=$(git rev-parse --show-toplevel)
     set +x
 }
 
+# zshrc-startup.zsh is already sourced by root dotfiles repo. no need to setup it here.
 
 main() {
     # list of functions

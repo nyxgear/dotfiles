@@ -3,27 +3,31 @@
 PWD=$(git rev-parse --show-toplevel)
 
 
-01_setup_zsh(){
+01_install_ohmyzsh(){
+    set -x
+    rm -rf ~/.oh-my-zsh
+    unset ZSH
+    echo 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+    set +x
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+02_setup_zsh(){
     set -x
 	rm -rf ~/.zshrc ~/.zsh-custom
 	ln -s ${PWD}/zsh/zshrc ~/.zshrc
     # ln -s ${PWD}/zsh/custom ~/.zsh-custom
     # rm ~/.zshrc
-# ln -s ~/Code/personal/dotfiles/zsh/zshrc ~/.zshrc
-# ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/custom.zsh ~/.oh-my-zsh/custom/custom.zsh
-# ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/powerlevel10k.zsh ~/.oh-my-zsh/custom/powerlevel10k.zsh
+    # ln -s ~/Code/personal/dotfiles/zsh/zshrc ~/.zshrc
+    # ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/custom.zsh ~/.oh-my-zsh/custom/custom.zsh
+    # ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/powerlevel10k.zsh ~/.oh-my-zsh/custom/powerlevel10k.zsh
     # ln -s ${PWD}/zsh/custom/themes/nyxgear.zsh-theme ~/.oh-my-zsh/custom/themes/nyxgear.zsh-theme
-    # ln -s ${PWD}/zsh/init.zsh ~/.oh-my-zsh/custom/init.zsh
-    # ln -s ${PWD}/zsh/init.sh ~/.oh-my-zsh/custom/init.sh
+
+    rm -rf ~/.oh-my-zsh/custom/zshrc-startup.zsh
+    ln -s ${PWD}/oh-my-zsh/custom/zshrc-startup.zsh ~/.oh-my-zsh/custom/zshrc-startup.zsh
     chsh -s $(which zsh)
     set +x
 }
-
-# 02_install_ohmyzsh(){
-#     set -x
-#     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#     set +x
-# }
 
 03_setup_git() {
     set -x
