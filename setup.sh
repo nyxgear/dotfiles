@@ -8,7 +8,7 @@ PWD=$(git rev-parse --show-toplevel)
     set -x
     
     rm -f ~/.gitconfig
-    ln -s "${PWD}/git/.gitconfig" ~/.gitconfig
+    ln -s "${PWD}/git/gitconfig" ~/.gitconfig
     
     if [ ! -f ~/.gitconfig-work ]; then
         touch ~/.gitconfig-work
