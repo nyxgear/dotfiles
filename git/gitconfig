@@ -50,10 +50,13 @@
 	loll = log --all --graph --decorate --pretty=oneline --abbrev-commit --stat
 
 [diff]
-    tool = cursor
-
-[difftool "cursor"]
-    cmd = cursor --wait --diff $LOCAL $REMOTE
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+    tool = code
+[mergetool "code"]
+    cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 
 [push]
 	default = current
@@ -61,9 +64,11 @@
 [merge]
 	tool = cursor
 
-[mergetool "cursor"]
-    cmd = cursor --wait --merge $REMOTE $LOCAL $BASE $MERGED
-
 # Work-only git configuration
 [include]
 	path = ~/.gitconfig-work
+
+
+
+[difftool]
+	prompt = false

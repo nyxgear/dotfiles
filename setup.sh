@@ -1,7 +1,8 @@
 #! /bin/bash
 
-PWD=$(git rev-parse --show-toplevel)
+# NODE: All functions in this file are idempotent.
 
+PWD=$(git rev-parse --show-toplevel)
 
 01_install_ohmyzsh(){
     set -x
@@ -35,6 +36,7 @@ PWD=$(git rev-parse --show-toplevel)
     rm -f ~/.gitconfig
     ln -s "${PWD}/git/gitconfig" ~/.gitconfig
     
+    # this will/could be setup later
     if [ ! -f ~/.gitconfig-work ]; then
         touch ~/.gitconfig-work
     fi
@@ -64,46 +66,51 @@ PWD=$(git rev-parse --show-toplevel)
     set +x
 }
 
+11_reminder_brew_apps() {
+    echo "Here is a reminder of the CLI apps you can install with brew:"
+    echo
+    echo "brew install git"
+    echo "brew install vim"
+    echo "brew install jq"
+    echo "brew install yq"
+    echo "brew install htop"
+    echo "brew install tmux"
+    echo
+    echo "----------------------------------------"
+    echo
+    echo "brew install kubectl"
+    echo "brew install fzf"
+    echo "brew install bat"
+    # echo "brew install git-delta"
+    # echo "brew install fd"
+    # echo "brew install exa"
+    # echo "brew install ripgrep"
+    # echo "brew install delta"
+    echo
+}
 
-# brew install zsh
-# brew install git
-# brew install vim
-# brew install nvm
-
-
-
-#gui apps
-# brew install --cask zoom
-# brew install --cask slack
-# brew install --cask jetbrains-toolbox
-# brew install docker
-# brew install docker-compose
-
-# brew install --cask spotify
-# brew install --cask firefox
-# brew install --cask visual-studio-code
-# brew install --cask session-manager-plugin  # useful for AWS SSM
-
-# brew install kubectl
-# brew install kubecolor/tap/kubecolor
-# brew install jq
-
-# brew install --cask obsidian
-
-
-
-# brew tap hashicorp/tap
-# brew install hashicorp/tap/vault
-
-
-
-
-
+12_reminder_brew_gui_apps() {
+    echo "Here is a reminder of the GUI apps you can install with brew:"
+    echo
+    echo "brew install --cask obsidian"
+    echo "brew install --cask rectangle"
+    echo "brew install --cask zoom"
+    echo "brew install --cask slack"
+    echo "brew install --cask jetbrains-toolbox"
+    echo "brew install --cask docker"
+    echo "brew install --cask docker-compose"
+    echo "brew install --cask spotify"
+    echo "brew install --cask firefox"
+    echo "brew install --cask visual-studio-code"
+    echo "brew install --cask session-manager-plugin" # useful for AWS SSM
+    echo "brew install --cask hashicorp/tap/vault"
+    echo
+}
 
 
 main() {
     # list of functions
-    functions=$(grep -E '^[0-9]+_(setup_|install_).*' setup.sh | cut -d'(' -f1 | tr '()' ' ' | sort)
+    functions=$(grep -E '^[0-9]+_(setup_|install_|reminder_).*' setup.sh | cut -d'(' -f1 | tr '()' ' ' | sort)
 
     echo "Available functions:"
     for func in $functions; do

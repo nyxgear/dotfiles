@@ -13,8 +13,14 @@ cd ~/.dotfiles
 - [zsh](https://www.zsh.org/) - A shell designed for interactive use, although it is also a powerful scripting language.
 - [oh-my-zsh](https://ohmyz.sh/) - A delightful community-driven (with 1,300+ contributors) framework for managing your zsh configuration.
 - [k9s](https://k9scli.io/) - A terminal based UI to interact with your Kubernetes clusters.
-- [tmux](https://github.com/tmux/tmux/wiki)
-
+- [tmux](https://github.com/tmux/tmux/wiki) - A terminal multiplexer that allows you to switch between multiple terminals.
+- [fzf](https://github.com/junegunn/fzf) - A command-line fuzzy finder.
+- [bat](https://github.com/sharkdp/bat) - A cat clone with wings.
+- [fd](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to `find`.
+- [exa](https://github.com/ogham/exa) - A modern replacement for `ls`.
+- [htop](https://github.com/htop-dev/htop) - A interactive process viewer.
+- [git-delta](https://github.com/dandavison/delta) - A syntax-highlighting pager for git and diff output.
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - A fast grep alternative.
 
 # Other useful utilities
 
