@@ -76,8 +76,10 @@ ZSH_THEME="obraun"
 plugins=(
     git
     fzf
+    # zsh-interactive-cd
+    # zsh-autocomplete
+    # zsh-syntax-highlighting
 )
-# TODO: setup more plugins!
 
 source $ZSH/oh-my-zsh.sh
 

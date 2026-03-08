@@ -17,15 +17,11 @@ PWD=$(git rev-parse --show-toplevel)
     set -x
 	rm -rf ~/.zshrc ~/.zsh-custom
 	ln -s ${PWD}/zsh/zshrc ~/.zshrc
-    # ln -s ${PWD}/zsh/custom ~/.zsh-custom
-    # rm ~/.zshrc
-    # ln -s ~/Code/personal/dotfiles/zsh/zshrc ~/.zshrc
-    # ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/custom.zsh ~/.oh-my-zsh/custom/custom.zsh
-    # ln -s ~/Code/personal/dotfiles/zsh/oh-my-zsh/powerlevel10k.zsh ~/.oh-my-zsh/custom/powerlevel10k.zsh
-    # ln -s ${PWD}/zsh/custom/themes/nyxgear.zsh-theme ~/.oh-my-zsh/custom/themes/nyxgear.zsh-theme
-
-    rm -rf ~/.oh-my-zsh/custom/zshrc-startup.zsh
-    ln -s ${PWD}/oh-my-zsh/custom/zshrc-startup.zsh ~/.oh-my-zsh/custom/zshrc-startup.zsh
+    # symlink all zsh files in oh-my-zsh/custom to ~/.oh-my-zsh/custom so they are automatically sourced
+    for file in ${PWD}/oh-my-zsh/custom/*.zsh; do
+        rm -rf ~/.oh-my-zsh/custom/$(basename $file)
+        ln -s $file ~/.oh-my-zsh/custom/$(basename $file)
+    done
     chsh -s $(which zsh)
     set +x
 }
@@ -102,6 +98,7 @@ PWD=$(git rev-parse --show-toplevel)
     echo "brew install --cask spotify"
     echo "brew install --cask firefox"
     echo "brew install --cask visual-studio-code"
+    echo "brew install --cask cursor"
     echo "brew install --cask session-manager-plugin" # useful for AWS SSM
     echo "brew install --cask hashicorp/tap/vault"
     echo
