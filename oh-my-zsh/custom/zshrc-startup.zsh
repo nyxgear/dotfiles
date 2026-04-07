@@ -15,7 +15,6 @@ alias k=kubectl
 alias d=docker
 alias tf=terraform
 alias weather='f(){ curl v2.wttr.in"$@";  unset -f f; }; f'
-alias cat='bat'
 alias up='git ci --amend --no-edit . && git ps -f' # useful to run precommit hooks after git ci --no-verify
 
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#enable-shell-autocompletion
