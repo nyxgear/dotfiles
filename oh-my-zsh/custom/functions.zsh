@@ -22,6 +22,16 @@ function export_github_token {
 	echo "GITHUB_TOKEN exported. echo \$GITHUB_TOKEN"
 }
 
+function set_pulumi_config_passphrase {
+	set_token_to_keychain "pulumi-config-passphrase" "Pulumi Config Passphrase"
+}
+
+function export_pulumi_config_passphrase {
+	local passphrase=$(get_token_from_keychain "pulumi-config-passphrase")
+	export PULUMI_CONFIG_PASSPHRASE=$passphrase
+	echo "PULUMI_CONFIG_PASSPHRASE exported. echo \$PULUMI_CONFIG_PASSPHRASE"
+}
+
 is_internet_available() {
     ping -q -c1 google.com &>/dev/null && echo "1" || echo "0"
 }
