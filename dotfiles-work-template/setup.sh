@@ -9,6 +9,26 @@ PWD=$(git rev-parse --show-toplevel)
     set +x
 }
 
+02_setup_cursor() {
+    set -x
+
+    mkdir -p ~/.cursor/rules ~/.cursor/skills
+
+    for file in "${PWD}"/cursor/rules/*.mdc; do
+        [ -f "$file" ] || continue
+        ln -sf "$file" ~/.cursor/rules/$(basename "$file")
+    done
+
+    for file in "${PWD}"/cursor/skills/*/SKILL.md; do
+        [ -f "$file" ] || continue
+        skill_dir=$(basename "$(dirname "$file")")
+        mkdir -p ~/.cursor/skills/"${skill_dir}"
+        ln -sf "$file" ~/.cursor/skills/"${skill_dir}"/SKILL.md
+    done
+
+    set +x
+}
+
 # zshrc-startup.zsh is already sourced by root dotfiles repo. no need to setup it here.
 
 main() {

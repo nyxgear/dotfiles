@@ -1,0 +1,12 @@
+---
+description: Personal coding style preferences
+alwaysApply: true
+---
+
+# Coding Style
+
+- Prefer early returns over deeply nested conditionals.
+- Keep functions short and focused — one responsibility each.
+- Use descriptive names; avoid abbreviations except well-known ones (e.g. `url`, `id`, `db`).
+- Prefer composition over inheritance.
+- Handle errors explicitly — never swallow exceptions silently.

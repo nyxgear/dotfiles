@@ -45,3 +45,7 @@ cd ~/.dotfiles
 - [kubeswitch](https://github.com/danielfoehrKn/kubeswitch)
 - [tmuxinator](https://github.com/tmuxinator/tmuxinator)
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+- [awesome cursor rules](https://github.com/cursor/cursor/blob/main/docs/rules.md)
+- [agentskills.io](https://agentskills.io/home)
+- [openclaudia.com](https://openclaudia.com/)
+- [awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules)

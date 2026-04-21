@@ -1,0 +1,12 @@
+---
+description: Development workflow preferences
+alwaysApply: true
+---
+
+# Workflow
+
+- Always read a file before editing it.
+- Run linters/tests after making changes to verify correctness.
+- Don't commit unless I explicitly ask.
+- Prefer editing existing files over creating new ones.
+- When adding dependencies, use the project's package manager and don't pin arbitrary versions.
