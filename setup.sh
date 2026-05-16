@@ -94,6 +94,7 @@ PWD=$(git rev-parse --show-toplevel)
     echo "----------------------------------------"
     echo
     echo "brew install kubectl"
+    echo "brew install k9s"
     echo "brew install k3d"
     echo "brew install fzf"
     echo "brew install bat"
