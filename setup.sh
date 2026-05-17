@@ -90,6 +90,7 @@ PWD=$(git rev-parse --show-toplevel)
     echo "brew install yq"
     echo "brew install htop"
     echo "brew install tmux"
+    echo "brew install uv"
     echo
     echo "----------------------------------------"
     echo
