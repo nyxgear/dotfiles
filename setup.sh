@@ -110,6 +110,7 @@ PWD=$(git rev-parse --show-toplevel)
 12_reminder_brew_gui_apps() {
     echo "Reminder to install GUIs apps with brew:"
     echo
+    echo "brew install --cask iterm2"
     echo "brew install --cask obsidian"
     echo "brew install --cask rectangle"
     echo "brew install --cask zoom"
