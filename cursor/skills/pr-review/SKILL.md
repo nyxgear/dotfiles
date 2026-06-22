@@ -31,6 +31,8 @@ description: >-
 ### Design
 - Changes are in the right layer/module.
 - No unnecessary coupling introduced.
+- There is consistent naming and code style.
+- The added code is consistent with the existing code according to abstractions, patterns, conventions, and libraries used.
 - Public API surface is minimal and intentional.
 
 ### Tests
