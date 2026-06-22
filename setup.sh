@@ -123,6 +123,7 @@ PWD=$(git rev-parse --show-toplevel)
     echo "brew install --cask visual-studio-code"
     echo "brew install --cask google-drive"
     echo "brew install --cask bitwarden"
+    echo "brew install --cask keepassxc"
     echo "brew install --cask cursor"
     echo "brew install --cask session-manager-plugin" # useful for AWS SSM
     echo "brew install --cask hashicorp/tap/vault"
