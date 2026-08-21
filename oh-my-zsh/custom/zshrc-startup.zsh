@@ -9,6 +9,9 @@ export PATH=$HOME/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 
+# CARGO PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # aliases
 alias l='ls -lah'
 alias k=kubectl

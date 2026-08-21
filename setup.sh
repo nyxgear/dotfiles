@@ -99,6 +99,7 @@ PWD=$(git rev-parse --show-toplevel)
     echo "brew install k3d"
     echo "brew install fzf"
     echo "brew install bat"
+    echo "brew install jira-cli"
     # echo "brew install git-delta"
     # echo "brew install fd"
     # echo "brew install exa"
