@@ -91,6 +91,7 @@ PWD=$(git rev-parse --show-toplevel)
     echo "brew install htop"
     echo "brew install tmux"
     echo "brew install uv"
+    echo "brew install dannystewart/apps/volumehud"
     echo
     echo "----------------------------------------"
     echo
