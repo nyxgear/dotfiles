@@ -1,5 +1,5 @@
 .vscode
 .idea
-.nx-ignore
-.nxignore
-.nyx-ignore
+.nx-ignore*
+.nxignore*
+.nyx-ignore*
