@@ -1,0 +1,8 @@
+alias l='ls -lah'
+alias k=kubectl
+alias tf=terraform
+
+if [ -f "${HOME}/.dotfiles-work/bash/bashrc" ]; then
+    # shellcheck source=/dev/null
+    source "${HOME}/.dotfiles-work/bash/bashrc"
+fi

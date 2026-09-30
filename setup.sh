@@ -43,7 +43,14 @@ PWD=$(git rev-parse --show-toplevel)
     set +x
 }
 
-04_setup_vim() {
+04_setup_bash() {
+    set -x
+    rm -f ~/.bashrc
+    ln -s "${PWD}/bash/bashrc" ~/.bashrc
+    set +x
+}
+
+05_setup_vim() {
     set -x
 	rm -rf ~/.vim ~/.vimrc
     ln -s "${PWD}/vim" ~/.vim
@@ -51,7 +58,7 @@ PWD=$(git rev-parse --show-toplevel)
     set +x
 }
 
-05_setup_cursor() {
+06_setup_cursor() {
     set -x
 
     mkdir -p ~/.cursor/rules ~/.cursor/skills
