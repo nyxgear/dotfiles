@@ -1,0 +1,2 @@
+# This file is used to add custom aliases, functions, and other settings to the bash shell.
+alias work_specific_aliases='echo "Work specific aliases"'
