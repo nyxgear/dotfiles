@@ -17,6 +17,7 @@ alias l='ls -lah'
 alias k=kubectl
 alias d=docker
 alias tf=terraform
+alias tg=terragrunt
 alias weather='f(){ curl v2.wttr.in"$@";  unset -f f; }; f'
 alias up='git ci --amend --no-edit . && git ps -f' # useful to run precommit hooks after git ci --no-verify
 
