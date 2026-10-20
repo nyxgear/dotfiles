@@ -1,6 +1,7 @@
 alias l='ls -lah'
 alias k=kubectl
 alias tf=terraform
+alias tg=terragrunt
 
 if [ -f "${HOME}/.dotfiles-work/bash/bashrc" ]; then
     # shellcheck source=/dev/null
