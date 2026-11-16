@@ -58,7 +58,17 @@ PWD=$(git rev-parse --show-toplevel)
     set +x
 }
 
-06_setup_cursor() {
+06_setup_agent_skills() {
+    set -x
+
+    mkdir -p ~/.agents
+    rm -rf ~/.agents/skills
+    ln -sfn "${PWD}/agent-skills" ~/.agents/skills
+
+    set +x
+}
+
+07_setup_cursor() {
     set -x
 
     mkdir -p ~/.cursor/rules ~/.cursor/skills
@@ -77,7 +87,6 @@ PWD=$(git rev-parse --show-toplevel)
 
     set +x
 }
-
 
 10_install_brew() {
     echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
